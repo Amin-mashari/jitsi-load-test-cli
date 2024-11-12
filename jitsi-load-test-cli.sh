@@ -209,7 +209,7 @@ while [ "$1" != "" ]; do
         --last-n )            shift
                               LAST_N=$1
                               ;;
-        --room_numbers )      shift
+        --room-numbers )      shift
                               ROOM_NUMBERS=$1
                               ;;
         * )                   usage

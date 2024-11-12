@@ -32,7 +32,7 @@ By default the script use the [daimoc/gst-meet](https://hub.docker.com/r/daimoc/
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/load-test-cli-tool.git
+    git clone https://github.com/daimoc/load-test-cli-tool.git
     ```
 2. Navigate to the repository directory:
     ```sh
