@@ -7,14 +7,18 @@ By default the media used for the video publising is sored in media folder and i
 
 ## Features
 
-
-
 - Specify room and instance for the load test
 - Configure the number of video and audio publishers
 - Set the number of subscribers
 - Define the duration of the load test
 - Define the media file to use
 - Define the lastN value
+
+## Known limitations
+
+- Your target Jitsi infrastructure must use XMPP over WebSocket for Jingle signaling.
+- Your target Jitsi infrastructure must have Colibri over WebSocket enabled, as Gst-Meet does not yet support SCTP for Colibri traffic.
+- You must use already encoded media file (vp8,vp9 or av1).
 
 ## Gst-Meet docker image
 
