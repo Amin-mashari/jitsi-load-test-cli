@@ -7,7 +7,7 @@ By default the media used for the video publising is sored in media folder and i
 
 ## Features
 
-- Specify room and instance for the load test
+- Specify room and domain for the load test
 - Configure the number of video and audio publishers
 - Set the number of subscribers
 - Define the duration of the load test
@@ -56,13 +56,13 @@ By default the script use the [daimoc/gst-meet](https://hub.docker.com/r/daimoc/
 Run the script with the required options:
 
 ```sh
-./jitsi-load-test-cli.sh --room ROOM_NAME --instance INSTANCE_ID --video-publishers NUM_VIDEO_PUBLISHERS --audio-publishers NUM_AUDIO_PUBLISHERS --subscribers NUM_SUBSCRIBERS --duration DURATION_SECONDS
+./jitsi-load-test-cli.sh --room ROOM_NAME --domain Domain --video-publishers NUM_VIDEO_PUBLISHERS --audio-publishers NUM_AUDIO_PUBLISHERS --subscribers NUM_SUBSCRIBERS --duration DURATION_SECONDS
 ```
 
 ### Example
 
 ```sh
-./jitsi-load-test-cli.sh --room "bob0" --instance "Instance1" --video-publishers 6 --audio-publishers 5 --subscribers 10 --duration 60 --token XXXXXXX
+./jitsi-load-test-cli.sh --room "bob0" --domain "meet.jitsi" --video-publishers 6 --audio-publishers 5 --subscribers 10 --duration 60 --token XXXXXXX
 ```
 
 Result view from a browser user : 
@@ -72,7 +72,7 @@ Result view from a browser user :
 ### Options
 
 - `--room` - Name of the room
-- `--instance` - Instance identifier
+- `--domain` - your jitsi domain ( meet.jitsi)
 - `--video-publishers` - Number of video publishers
 - `--audio-publishers` - Number of audio publishers
 - `--subscribers` - Number of subscribers
