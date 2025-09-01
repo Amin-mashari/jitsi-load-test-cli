@@ -56,7 +56,7 @@ By default the script use the [daimoc/gst-meet](https://hub.docker.com/r/daimoc/
 Run the script with the required options:
 
 ```sh
-./jitsi-load-test-cli.sh --room ROOM_NAME --domain Domain --video-publishers NUM_VIDEO_PUBLISHERS --audio-publishers NUM_AUDIO_PUBLISHERS --subscribers NUM_SUBSCRIBERS --duration DURATION_SECONDS
+./jitsi-load-test-cli.sh --room ROOM_NAME --domain DOMAIN --video-publishers NUM_VIDEO_PUBLISHERS --audio-publishers NUM_AUDIO_PUBLISHERS --subscribers NUM_SUBSCRIBERS --duration DURATION_SECONDS
 ```
 
 ### Example
