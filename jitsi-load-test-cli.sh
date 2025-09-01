@@ -5,11 +5,11 @@ GST_IMAGE="daimoc/gst-meet"
 
 # Function to display usage instructions
 usage() {
-    echo "Usage: $0 --room ROOM --instance INSTANCE --video-publishers NUM --audio-publishers NUM --subscribers NUM --duration DURATION --media FILE --video-codec VIDEO_CODEC --token TOKEN --time_between_agent WAIT_TIME --last-n LAST_N --room-numbers NUM"
+    echo "Usage: $0 --room ROOM --domain DOMAIN --video-publishers NUM --audio-publishers NUM --subscribers NUM --duration DURATION --media FILE --video-codec VIDEO_CODEC --token TOKEN --time_between_agent WAIT_TIME --last-n LAST_N --room-numbers NUM"
     echo
     echo " Mandatory Options : "
     echo "  --room                Name of the room"
-    echo "  --instance            Instance identifier"
+    echo "  --domain            base domain of meet (mymeet.jitsi) "
     echo " Other options:"
     echo "  --video-publishers    Number of video publishers"
     echo "  --audio-publishers    Number of audio publishers"
@@ -70,8 +70,8 @@ run_agent(){
                 --nick $NICK \
                 --last-n $LAST_N \
                 --room-name $ROOM \
-                --web-socket-url wss://$INSTANCE/xmpp-websocket?room=$ROOM\&token=$TOKEN \
-                --xmpp-domain=$INSTANCE \
+                --web-socket-url wss://$DOMAIN/xmpp-websocket?room=$ROOM\&token=$TOKEN \
+                --xmpp-domain=meet.jitsi --focus-jid=focus.meet.jitsi --muc-domain=muc.meet.jitsi \                
                 --verbose=0 \
                 --recv-pipeline-participant-template="$RECEIVER_PIPELINE" \
                 > /dev/null 2>&1
@@ -86,8 +86,8 @@ run_agent(){
                 --nick $NICK \
                 --last-n $LAST_N \
                 --room-name $ROOM \
-                --web-socket-url wss://$INSTANCE/xmpp-websocket?room=$ROOM\&token=$TOKEN \
-                --xmpp-domain=$INSTANCE \
+                --web-socket-url wss://$DOMAIN/xmpp-websocket?room=$ROOM\&token=$TOKEN \
+                --xmpp-domain=meet.jitsi --focus-jid=focus.meet.jitsi --muc-domain=muc.meet.jitsi \
                 --verbose=0 \
                 --send-pipeline="$SENDER_PIPELINE" \
                 --recv-pipeline-participant-template="$RECEIVER_PIPELINE" \
@@ -115,8 +115,8 @@ run_agent(){
                     --nick $NICK \
                     --last-n $LAST_N \
                     --room-name $ROOM_NAME \
-                    --web-socket-url wss://$INSTANCE/xmpp-websocket?room=$ROOM\&token=$TOKEN \
-                    --xmpp-domain=$INSTANCE \
+                    --web-socket-url wss://$DOMAIN/xmpp-websocket?room=$ROOM\&token=$TOKEN \
+                    --xmpp-domain=meet.jitsi --focus-jid=focus.meet.jitsi --muc-domain=muc.meet.jitsi \
                     --verbose=0 \
                     --recv-pipeline-participant-template="$RECEIVER_PIPELINE" \
                     > /dev/null 2>&1
@@ -130,8 +130,8 @@ run_agent(){
                     --nick $NICK \
                     --last-n $LAST_N \
                     --room-name $ROOM_NAME \
-                    --web-socket-url wss://$INSTANCE/xmpp-websocket?room=$ROOM\&token=$TOKEN \
-                    --xmpp-domain=$INSTANCE \
+                    --web-socket-url wss://$DOMAIN/xmpp-websocket?room=$ROOM\&token=$TOKEN \
+                    --xmpp-domain=meet.jitsi --focus-jid=focus.meet.jitsi --muc-domain=muc.meet.jitsi \
                     --verbose=0 \
                     --send-pipeline="$SENDER_PIPELINE" \
                     --recv-pipeline-participant-template="$RECEIVER_PIPELINE" \
@@ -161,7 +161,7 @@ trap cleanup SIGINT
 
 # Initialize variables
 ROOM=""
-INSTANCE=""
+DOMAIN=""
 VIDEO_PUBLISHERS=0
 AUDIO_PUBLISHERS=0
 SUBSCRIBERS=0
@@ -179,8 +179,8 @@ while [ "$1" != "" ]; do
         --room )              shift
                               ROOM=$1
                               ;;
-        --instance )          shift
-                              INSTANCE=$1
+        --domain )          shift
+                              DOMAIN=$1
                               ;;
         --video-publishers )  shift
                               VIDEO_PUBLISHERS=$1
@@ -219,14 +219,14 @@ while [ "$1" != "" ]; do
 done
 
 # Validate required arguments
-if [ -z "$ROOM" ] || [ -z "$INSTANCE" ] || [ -z "$DURATION" ]; then
+if [ -z "$ROOM" ] || [ -z "$DOMAIN" ] || [ -z "$DURATION" ]; then
     usage
 fi
 
 # Display the parameters for the load test
 echo "Starting load test with the following parameters:"
 echo "Room: $ROOM"
-echo "Instance: $INSTANCE"
+echo "Domain: $DOMAIN"
 echo "Video Publishers: $VIDEO_PUBLISHERS"
 echo "Audio Publishers: $AUDIO_PUBLISHERS"
 echo "Subscribers: $SUBSCRIBERS"
