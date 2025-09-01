@@ -9,7 +9,7 @@ usage() {
     echo
     echo " Mandatory Options : "
     echo "  --room                Name of the room"
-    echo "  --domain            base domain of meet (mymeet.jitsi) "
+    echo "  --domain              Jitsi domain ( meet.jitsi) "
     echo " Other options:"
     echo "  --video-publishers    Number of video publishers"
     echo "  --audio-publishers    Number of audio publishers"
@@ -71,7 +71,7 @@ run_agent(){
                 --last-n $LAST_N \
                 --room-name $ROOM \
                 --web-socket-url wss://$DOMAIN/xmpp-websocket?room=$ROOM\&token=$TOKEN \
-                --xmpp-domain=meet.jitsi --focus-jid=focus.meet.jitsi --muc-domain=muc.meet.jitsi \                
+                --xmpp-domain=meet.jitsi --focus-jid=focus.meet.jitsi --muc-domain=muc.meet.jitsi \
                 --verbose=0 \
                 --recv-pipeline-participant-template="$RECEIVER_PIPELINE" \
                 > /dev/null 2>&1
